@@ -24,7 +24,6 @@ return this.products.length ++
             code,
             stock
         }
-
         this.products.push(newProduct)
     }
 
@@ -54,6 +53,6 @@ if (this.codeSearch() == code) {
     }
 }
 
-const productManager = new ProductManager();
+const product1 = new ProductManager("Coca-Cola","Bebida gaseosa",300,"---",30098123,100);
 
-productManager.addProduct("Coca-Cola","Bebida gaseosa",300,"---",30098123,100)
+product1.addProduct()
