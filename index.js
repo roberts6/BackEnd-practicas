@@ -1,51 +1,50 @@
 class ProductManager {
     products;
-    constructor(title, description, price, thumbnail, code, stock){
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.thumbnail = thumbnail;
-        this.code = code;
-        this.stock = stock;
+
+    constructor(){
         this.products = []
     }
     
     newId(){
-return this.products.length ++
+return this.products.length + 1
     }
 
     addProduct(title, description, price, thumbnail, code, stock){
-        let newProduct = { 
-            id = this.newId(),
+      if (title && description && price && thumbnail && code && stock && this.CodeValidation(code)) {
+        let product = {
+            id: this.newId(),
             title,
-            description,
-            price,
-            thumbnail,
-            code,
-            stock
-        }
-        this.products.push(newProduct)
+             description,
+             price,
+             thumbnail,
+             code,
+             stock
+        }  
+        this.products.push(product)
+      } else {
+          console.log("Validar campos");         
+      }  
     }
 
-    codeSearch(code){
-        let codigo = this.products.find( elem => elem.code == code)
-        return codigo;
-    }
-
-    validateCode(code) {
-if (this.codeSearch() == code) {
+    CodeValidation(code) {
+        let resultado = true;
+        let equalCode = this.products.find(product => product.code == code)
+if (equalCode) {
+    resultado = false
     console.log(`el código ${code} ya está ingresado`)
 } else {
-    this.addProduct()
+    return resultado;
 }
     }
 
     getProductById (id){
-        if (this.products.find( elem => elem.id == id)) {
-            return productId;
+        let product = this.products.find( product => product.id == id)
+        if (product) {
+            console.log(`El ID seleccionado corresponde a: ${product.title}`);
         } else {
             console.log("Product not found");     
         }
+        //product ?? console.log(product), console.log("Product not found");
     }
 
     getProduct(){
@@ -53,6 +52,10 @@ if (this.codeSearch() == code) {
     }
 }
 
-const product1 = new ProductManager("Coca-Cola","Bebida gaseosa",300,"---",30098123,100);
+let productManager = new ProductManager();
 
-product1.addProduct()
+productManager.addProduct("Coca-Cola","Bebida gaseosa",300,"---",30098123,100),
+productManager.addProduct("Seven-up","Bebida gaseosa",280,"---",30098124,120),
+productManager.addProduct("Paso de los toros","Bebida gaseosa",280,"---",30098123,120),
+productManager.getProduct()
+productManager.getProductById(1)
