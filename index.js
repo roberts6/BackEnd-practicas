@@ -39,12 +39,12 @@ if (equalCode) {
 
     getProductById (id){
         let product = this.products.find( product => product.id == id)
-        if (product) {
-            console.log(`El ID seleccionado corresponde a: ${product.title}`);
-        } else {
-            console.log("Product not found");     
-        }
-        //product ?? console.log(product), console.log("Product not found");
+        // if (product) {
+        //     console.log(`El ID seleccionado corresponde a: ${product.title}`);
+        // } else {
+        //     console.log("Product not found");     
+        // }
+        product ? console.log(`El ID seleccionado corresponde a: ${product.title}`): console.log("Product not found");
     }
 
     getProduct(){
@@ -58,4 +58,4 @@ productManager.addProduct("Coca-Cola","Bebida gaseosa",300,"---",30098123,100),
 productManager.addProduct("Seven-up","Bebida gaseosa",280,"---",30098124,120),
 productManager.addProduct("Paso de los toros","Bebida gaseosa",280,"---",30098123,120),
 productManager.getProduct()
-productManager.getProductById(1)
+productManager.getProductById(2)
