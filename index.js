@@ -10,7 +10,7 @@ return this.products.length + 1
     }
 
     addProduct(title, description, price, thumbnail, code, stock){
-      if (title && description && price && thumbnail && code && stock && this.CodeValidation(code)) {
+      if (title && description && price > 0 && thumbnail && code && stock && this.CodeValidation(code)) {
         let product = {
             id: this.newId(),
             title,
@@ -58,5 +58,6 @@ productManager.addProduct("Coca-Cola","Bebida gaseosa",300,"---",30098123,100),
 productManager.addProduct("Seven-up","Bebida gaseosa",280,"---",30098124,120),
 productManager.addProduct("Paso de los toros","Bebida gaseosa",280,"---",30098123,120),
 productManager.addProduct("Mirinda","Bebida gaseosa",280,"---",30098127,120),
+productManager.addProduct("Pan con salame","Panadería",280,"---",30098121),
 productManager.getProduct()
 productManager.getProductById(2)
