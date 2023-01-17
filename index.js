@@ -45,7 +45,7 @@ class ProductManager {
             
             let newProduct = { id: maxId, title, description, price, thumbnail, code, stock };
             products.push(newProduct);
-            await fs.promises.writeFile(this.path, JSON.stringify(products));
+            await fs.promises.appendFile(this.path, JSON.stringify(products));
             return console.log("successfully added");
         } catch (error) {
             console.error(error);
@@ -139,13 +139,6 @@ productManager.addProduct(
   100
 );
 
-productManager.addProduct(
-    "Seven-up",
-    "Bebida gaseosa",
-    280,
-    "----",
-    30098124,
-    120
-  );
 
-productManager.deleteProduct(1)
+
+//productManager.deleteProduct(1)
