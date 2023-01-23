@@ -3,7 +3,8 @@ const express = require("express")
 const app = express()
 
 //import
-import index from './index.js'
+//import ProductManager from "./scripts/ProductManager"
+const ProductManager = require ('./scripts/ProductManager')
 
 // middleware
 app.use(express.urlencoded({extended: true}));
@@ -14,7 +15,7 @@ res.send('Raiz del proyecto!!!')
 })
 
 app.get('/products', (req, res) => {
-res.send('Total de productos')
+res.send(ProductManager)
 })
 
 app.get('/products/:pid', (req, res) => {
