@@ -8,6 +8,7 @@ const ProductManager = require ('./scripts/ProductManager')
 
 // middleware
 app.use(express.urlencoded({extended: true}));
+app.use(express.json())
 
 // rutas
 app.get('/', (req, res) => {
@@ -15,12 +16,12 @@ res.send('Raiz del proyecto!!!')
 })
 
 app.get('/products', (req, res) => {
-res.send(ProductManager)
+res.send(ProductManager.getProducts()) //debería mostrar el array completo
 })
 
 app.get('/products/:pid', (req, res) => {
-let productId = req.params.productId;
-let product = products.find(product => product.id == productId)
+let productId = req.params.id;
+let product = products.find(product => product.id == productId) // busca un producto cuyo id sea igual a productId
 // if (product) return res.send(product)
 product ? res.send(product) : res.send("producto no encontrado")
 })
