@@ -29,28 +29,28 @@ class ProductManager {
     //   }  
     // }
 
-    async addProduct(title, description, price, thumbnail, code, stock) {
-        try {
-            if (!title || !description || !price || !thumbnail || !code || !stock) throw new Error('All fields are required');
+    // async addProduct(title, description, price, thumbnail, code, stock) {
+    //     try {
+    //         if (!title || !description || !price || !thumbnail || !code || !stock) throw new Error('All fields are required');
 
-            let products = await this.getProducts();
-            let maxId = 0;
+    //         let products = await this.getProducts();
+    //         let maxId = 0;
 
-            if (!products == []){
-                if (products.some(product => product.code === code)) throw new Error("Code already exists.");
-                products.forEach(product => { if (product.id > maxId) maxId = product.id} );
-            }
+    //         if (!products == []){
+    //             if (products.some(product => product.code === code)) throw new Error("Code already exists.");
+    //             products.forEach(product => { if (product.id > maxId) maxId = product.id} );
+    //         }
 
-            maxId++
+    //         maxId++
             
-            let newProduct = { id: maxId, title, description, price, thumbnail, code, stock };
-            products.push(newProduct);
-            await fs.promises.appendFile(this.path, JSON.stringify(products));
-            return console.log("successfully added");
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    //         let newProduct = { id: maxId, title, description, price, thumbnail, code, stock };
+    //         products.push(newProduct);
+    //         await fs.promises.appendFile(this.path, JSON.stringify(products));
+    //         return console.log("successfully added");
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
 //     CodeValidation(code) {
 //         let resultado = true;
@@ -130,14 +130,14 @@ let productManager = new ProductManager("product.json");
 // productManager.getProduct()
 // productManager.getProductById(2)
 
-productManager.addProduct(
-  "Coca-Cola",
-  "Bebida gaseosa",
-  300,
-  "----",
-  30098123,
-  100
-);
+// productManager.addProduct(
+//   "Coca-Cola",
+//   "Bebida gaseosa",
+//   300,
+//   "----",
+//   30098123,
+//   100
+// );
 
 
 
