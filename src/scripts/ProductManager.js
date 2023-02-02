@@ -73,6 +73,5 @@ class ProductManager {
 }
 const productManager = new ProductManager('./database/productsDB.json'); // no me lee la ruta a mi archivo
 
-module.exports ={
-  productManager :  productManager 
-}
+module.exports = productManager;
+

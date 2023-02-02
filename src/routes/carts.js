@@ -19,7 +19,6 @@ cartRouter.post("/", (req, res) => {
     const carritoId = +req.params.cid;
     const productoId = +req.params.pid;
     let cart = cartManager.readFile().find((e) => e.id === carritoId);
-    
      cart ? cartManager.addProductCart(carritoId,productoId) && res.send("Cart Add success") : res.send("No cart to add")
     } 
 
