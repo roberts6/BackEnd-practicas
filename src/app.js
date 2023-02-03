@@ -2,6 +2,13 @@
 const express = require("express")
 const app = express()
 
+// configuración de handlebars y socket.io
+ const { Server } = require ("socket.io")
+
+// llamado a recursos estáticos dentro de public
+app.use(express.static("public"))
+
+// importación de archivos
 const productsRouter = require('./routes/products')
 const cartRouter = require('./routes/carts')
 
@@ -11,13 +18,14 @@ app.use(express.urlencoded({extended: true}));
 
 // rutas
 app.use('/api/product', productsRouter)
-
 app.use('/api/carts', cartRouter)
 
 // chequeo de servidor y manejo de error
-const server = app.listen(8080, () => console.log("server listening on port 8080"));
-server.on("error", error => console.log(error));
+//const server = app.listen(8080, () => console.log("server listening on port 8080"));
+//server.on("error", error => console.log(error));
 
-
-
-
+//chequeo de servidor y manejo de error con socket.io
+const httpserver = app.listen(8080, () => console.log("server listening on port 8080"));
+const io = new Server(httpserver);
+io.on ("connection", socket => console.log("cliente conectado")
+);

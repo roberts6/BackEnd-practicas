@@ -71,7 +71,7 @@ class ProductManager {
     this.writeData([]);
   }
 }
-const productManager = new ProductManager('./database/productsDB.json'); // no me lee la ruta a mi archivo
+const productManager = new ProductManager("./database/productsDB.json"); // no me lee la ruta a mi archivo
 
 module.exports = productManager;
 
