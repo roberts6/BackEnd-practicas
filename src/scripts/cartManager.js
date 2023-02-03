@@ -35,7 +35,6 @@ class CartManager {
           };
           this.carts.push(cart);
           this.writeData(this.carts)
-
     }
   }
 }
@@ -43,6 +42,4 @@ class CartManager {
 const cartManager = new CartManager("./database/cartDB.json");
 cartManager.addCart()
 
-module.exports = {
-  cartManager: cartManager,
-};
+module.exports = cartManager;
