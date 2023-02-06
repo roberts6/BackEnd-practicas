@@ -7,7 +7,7 @@ class CartManager {
     this.carts = [];
   }
   readFile() {
-    const data = JSON.parse(fs.readFileSync(`./${this.path}`, "utf-8"));
+    const data = await JSON.parse(fs.promises.readFileSync(`./${this.path}`, "utf-8"));
     return data;
   }
 
