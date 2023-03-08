@@ -48,7 +48,7 @@ const { productManager } = require("../scripts/ProductManager");
 
 productsRouter.post('/',async(req,res) => {
   let {nombre,apellido,email} = req.body // 1ro obtengo los datos establecidos en el schema de mongoose
-  if (!nombre || !apellido || !emamil) return res.send({status:"error", error:"Incomplete values"}); //evaluo que existan los valores sino devuelve el error
+  if (!nombre || !apellido || !emamil || !dni) return res.send({status:"error", error:"Incomplete values"}); //evaluo que existan los valores sino devuelve el error
 let result = await userModel.create({
   nombre,
   apellido,
@@ -60,7 +60,7 @@ res.send({status:"succes",payload:result}) //devuelve el usuario recién creado
 productsRouter.put('/:uid',async(req,res) => {
   let {uid} = req.params; // obtiene el userId desde los params
   let UserToReplace = req.body; //toma a todo el cuerpo del usuario
-  if(!UserToReplace.nombre || !UserToReplace.apellido || !UserToReplace.email) return res.send({status:"error", error:"Incomplete values"})
+  if(!UserToReplace.nombre || !UserToReplace.apellido || !UserToReplace.email || !!UserToReplace.dni) return res.send({status:"error", error:"Incomplete values"})
   try {
     let result = await userModel.updateOne({_id:uid},UserToReplace) // Mongo maneja internamente _id
     res.send({status:"succes",payload:result})  
