@@ -9,3 +9,5 @@ socket.on('newProducts', data => { // -> de esta manera el socket está escuchan
     document.querySelector('p').innerText - data;
 })
 
+
+

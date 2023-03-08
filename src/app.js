@@ -9,10 +9,16 @@ const http = require ("http");
 // llamado a recursos estáticos dentro de public
 app.use(express.static("public"))
 
+// llamada a MONGOOSE
+import userRouter from './routes/user.router.js'
+import mongoose from 'mongoose';
+import { userModel } from './models/user.model.js';
+
 // importación de archivos
 const productsRouter = require('./routes/products')
 const cartRouter = require('./routes/carts')
-const productManager = require('./database/productsDB.json')
+const productManager = require('./database/productsDB.json');
+const { error } = require("console");
 
 // middleware --> sin estas líneas el servidor no sabe cómo interpretar el archivo JSON que se envía
 app.use(express.json())
@@ -42,3 +48,19 @@ io.sockets.emit('messagenewProducts', productManager)
 })
 });
 
+// importo mongo copiando la url que saco de Mongo Atlas
+mongoose.connect('mongodb+srv://Roberts6:BeniRoberts6@coderhouse-backend.daqwlwh.mongodb.net/?retryWrites=true&w=majority',(error) => {
+    if (error) {
+        console.log("Cannot connect to database: " + error)
+        process.exit()
+    }
+})
+
+const enviroment = async () => {
+    let response = await userModel.find().explain('executionStats') // de esta manera trae toda la DB, pero si dentro de find colocamos un parámetro (ej: nombre:"Benicio") hace el filtro
+    console.log(response);
+}
+enviroment();
+
+
+app.use('/api/users', userRouter);
