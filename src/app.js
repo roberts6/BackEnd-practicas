@@ -29,7 +29,8 @@ app.use('/api/product', productsRouter)
 app.use('/api/carts', cartRouter)
 
 // chequeo de servidor y manejo de error
-//const server = app.listen(8080, () => console.log("server listening on port 8080"));
+//const PORT = process.env.PORT || 8080
+//const server = app.listen(8080, () => console.log(`server listening on port 8080 ${server.adress().port}`));
 //server.on("error", error => console.log(error));
 
 //chequeo de servidor y manejo de error con socket.io
@@ -49,7 +50,7 @@ io.sockets.emit('messagenewProducts', productManager)
 });
 
 // importo mongo copiando la url que saco de Mongo Atlas
-mongoose.connect('mongodb+srv://Roberts6:BeniRoberts6@coderhouse-backend.daqwlwh.mongodb.net/?retryWrites=true&w=majority',(error) => {
+mongoose.connect('mongodb+srv://Roberts6:BeniRoberts6@coderhouse-backend.daqwlwh.mongodb.net/CoderHouse-BackEnd?retryWrites=true&w=majority',(error) => {
     if (error) {
         console.log("Cannot connect to database: " + error)
         process.exit()
